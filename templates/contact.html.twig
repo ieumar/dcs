@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{{parent()}}
+<style type="text/css">
+    .contact-hero {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: #002147;
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            color: #002147;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        button[type="submit"] {
+            background: #002147;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #FFD700;
+            color: #002147;
+        }
+
+        .map-container {
+            margin: 4rem 0;
+            height: 400px;
+            background: #eee;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+</style>
+{% endblock %}
+{% block body %}
+    <!-- Contact Page Content -->
+    <section class="contact-hero">
+        <h1>Get in Touch With Us</h1>
+        <p>We're here to answer your questions about programs, admissions, and research opportunities.</p>
+    </section>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <div class="contact-details">
+                <p><strong>Department of Computer Science</strong></p>
+                <p>Ahmadu Bello University<br>
+                Site II, Behind Main Campus<br>
+                Samaru Zaria, Kaduna</p>
+                
+                <p>📞 +234 (80) 54195327<br>
+                📧 ieumar@abu.edu.ng</p>
+                
+                <h3>Office Hours</h3>
+                <p>Monday-Friday: 9 AM - 5 PM<br>
+                Saturday: Closed<br>
+                Sunday: Closed</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="#">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="admissions">Admissions Inquiry</option>
+                        <option value="program">Program Information</option>
+                        <option value="research">Research Collaboration</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-container">
+        <!-- Embed Google Map -->
+        <iframe src="https://www.google.com/maps/embed?..." 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+        </iframe>
+    </div>
+
+{% endblock %}

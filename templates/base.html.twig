@@ -3,15 +3,139 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block links %}{% endblock %}
         {% block stylesheets %}
-        {% endblock %}
+            <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        .nav-container {
+            background: #002147; /* University navy blue */
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700; /* Gold hover effect */
+            text-decoration: underline;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background: #002147;
+                padding: 1rem 2rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        #body{
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 10px;
+            border-color: skyblue;
+            width: 70%;
+            margin:auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding:20px;
+            box-shadow: 2px 2px 4px skyblue;
+        }
+            </style>
         {% endblock %}
+        {% block scripts_top %}{% endblock %}
+        {% block js_top %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block header %}
+        <nav class="nav-container">
+            <div class="nav-menu">
+                <a href="#" class="logo">
+                    <img src="{{asset('asset/image/logo.png')}}" alt="University Logo" height="40">
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="{{path('home')}}">Home</a></li>
+                    <li><a href="{{path('about')}}">About</a></li>
+                    <li><a href="{{path('staff')}}">Staff</a></li>
+                    <li><a href="{{path('academics')}}">Academics</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="{{path('contact')}}">Contact</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" aria-label="Toggle navigation">
+                    ☰
+                </button>
+            </div>
+        </nav>
+        {% endblock %}
+        <section id="body">
+            {% block body %}{% endblock %}
+        </section>
+        {% block footer %}
+            <!-- Footer -->
+            <footer style="background: #002147; color: white; padding: 2rem; text-align: center;">
+                <p> &copy;{{'now'|date('Y')}} Ahmadu Bello University - Computer Science Department</p>
+            </footer>
+        {% endblock %}
+        {% block scripts_bottom %}
+
+        {% endblock %}
+        {% block js_bottom %}
+
+        {% endblock %}
     </body>
 </html>
