@@ -9,6 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('')]
 class HomeController extends AbstractController
 {
+    #[Route('', name: 'default')]
+    public function default(): Response
+    {
+        return $this->redirectToRoute('home');
+    }
     #[Route('/home', name: 'home')]
     public function home(): Response
     {
