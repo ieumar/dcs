@@ -47,7 +47,7 @@ class HomeController extends AbstractController
     #[Route('/admin', name: 'admin')]
     public function admin()
     {
-        $this->createAccessDeniedException("Access Denied!");
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
     }
     #[Route('/admissions', name: 'admissions')]
     public function admissions()
