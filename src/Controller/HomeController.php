@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,9 +21,13 @@ class HomeController extends AbstractController
         return $this->render('home.html.twig');
     }
     #[Route('/contact', name: 'contact')]
-    public function contact(): Response
+    public function contact(Request $request): Response
     {
-        return $this->render('contact.html.twig');
+        $data = [];
+        if ($request->getMethod() == 'POST') {
+            $data['sent'] = "sent";
+        }
+        return $this->render('contact.html.twig', $data);
     }
     #[Route('/about', name: 'about')]
     public function about(): Response
@@ -38,5 +43,15 @@ class HomeController extends AbstractController
     public function academics(): Response
     {
         return $this->render('academics.html.twig');
+    }
+    #[Route('/admin', name: 'admin')]
+    public function admin()
+    {
+        $this->createAccessDeniedException("Access Denied!");
+    }
+    #[Route('/admissions', name: 'admissions')]
+    public function admissions()
+    {
+        throw new \Exception("An error occurred");
     }
 }
